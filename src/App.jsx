@@ -41,7 +41,7 @@ function App() {
         img: "https://i1.ruliweb.com/ori/24/11/12/1931dd8c42a1f74ea.gif",
       },
     ],
-    음료: [
+    차가운음료: [
       {
         name: "콜라",
         img: "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfMjQx/MDAxNTgzMjA2MjY3ODY5.bvebndyr0h4w2PrF2-78Q8AVTxyj5xZCgpAGKlPi3FYg.KP2I2PAV45cXmtby1g6z5vtXhqPqAToBhlW7aPfnmLUg.GIF.e7dk4/IMG_8316.GIF?type=w800",
