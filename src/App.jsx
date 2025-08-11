@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+  const [activeTab, setActiveTab] = useState('버거');
   const [order, setOrder] = useState([]);
 
   const addToOrder = (item) => {
@@ -41,7 +42,7 @@ function App() {
         img: "https://i1.ruliweb.com/ori/24/11/12/1931dd8c42a1f74ea.gif",
       },
     ],
-    차가운음료: [
+    음료: [
       {
         name: "콜라",
         img: "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfMjQx/MDAxNTgzMjA2MjY3ODY5.bvebndyr0h4w2PrF2-78Q8AVTxyj5xZCgpAGKlPi3FYg.KP2I2PAV45cXmtby1g6z5vtXhqPqAToBhlW7aPfnmLUg.GIF.e7dk4/IMG_8316.GIF?type=w800",
@@ -56,27 +57,39 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🍔 Burger Shopp 🍔</h1>
+        <div className="header-wrapper">
+          <h1>🍔 Burger Shop 🍔</h1>
+        </div>
       </header>
 
-      <main>
+      {/* 탭 */}
+      <div className="tabs">
         {Object.keys(menuData).map((category) => (
-          <section key={category} className="menu">
-            <h2>{category}</h2>
-            <div className="menu-items">
-              {menuData[category].map((item, idx) => (
-                <div className="menu-item" key={idx}>
-                  <img src={item.img} alt={item.name} />
-                  <p>{item.name}</p>
-                  <button onClick={() => addToOrder(item.name)}>
-                    Add to Order
-                  </button>
-                </div>
-              ))}
-            </div>
-          </section>
+          <button
+            key={category}
+            className={`tab-button ${activeTab === category ? 'active' : ''}`}
+            onClick={() => setActiveTab(category)}
+          >
+            {category}
+          </button>
         ))}
+      </div>
 
+      <main>
+        {/* 선택된 카테고리 메뉴 */}
+        <section className="menu">
+          <div className="menu-items">
+            {menuData[activeTab].map((item, idx) => (
+              <div className="menu-item" key={idx}>
+                <img src={item.img} alt={item.name} />
+                <p>{item.name}</p>
+                <button onClick={() => addToOrder(item.name)}>Add to Order</button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 주문 목록 */}
         <section className="order">
           <h2>Your Order</h2>
           {order.length === 0 ? (
