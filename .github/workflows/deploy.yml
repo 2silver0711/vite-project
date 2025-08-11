@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main # main 브랜치에 push될 때 실행
 
 jobs:
   build-and-deploy:
@@ -13,10 +14,6 @@ jobs:
       pages: write
       id-token: write
     
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -24,11 +21,10 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
-        cache: 'npm'
+        node-version: 22.18.0 # nodejs 버전
         
     - name: Install dependencies
-      run: npm ci
+      run: npm install
       
     - name: Build
       run: npm run build
