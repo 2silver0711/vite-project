@@ -1,0 +1,138 @@
+/* ======= 기본 스타일 (1920*1080 기준) ======= */
+body {
+  margin: 0;
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #000000, #222222);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu,
+.order {
+  padding: 2.5rem;
+  max-width: 1400px; /* 1920 기준 중앙 정렬 */
+  margin: auto;
+}
+
+/* 메뉴 아이템 그리드 */
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.menu-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 이미지 크기 (1920 기준) */
+.menu-item img {
+  width: 220px;
+  height: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu-item p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* 버튼 디자인 */
+button {
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, #ff9800, #ff7b00);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #e68a00, #cc7000);
+  transform: scale(1.05);
+}
+
+/* ======= 반응형 ======= */
+
+/* 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+  .menu-items {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .menu-item img {
+    width: 160px;
+    height: 120px;
+  }
+
+  .menu-item p {
+    font-size: 0.95rem;
+  }
+}
+
+/* 모바일 (600px 이하) */
+@media (max-width: 600px) {
+  header {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+
+  .menu {
+    padding: 1rem;
+  }
+
+  .menu-items {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .menu-item {
+    padding: 0.6rem;
+  }
+
+  .menu-item img {
+    width: 140px;
+    height: 110px;
+  }
+
+  .menu-item p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
