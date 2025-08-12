@@ -1,111 +1,42 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import AddButton from './AddButton';
 
-function App() {
-  const [activeTab, setActiveTab] = useState('버거');
-  const [order, setOrder] = useState([]);
-
-  // 부모가 상태를 바꾸는 함수
-  const addToOrder = (item) => {
-    setOrder([...order, item]);
-  };
-
-  const menuData = {
-    버거: [
-      {
-        name: "뚱이치즈버거",
-        img: "https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjNfMzcg/MDAxNjAzMzgyOTQ0MjIz.QWKOl1JZSbj05umbDS9QFOQW1dRdMBZAtdQNyG_AzLwg.E42PE-SxA9w2uI9NPHzafrh438MDQGvcLSVLC-2MB1cg.GIF.ckzkslkkk/IMG_4620.GIF?type=w800",
-      },
-      {
-        name: "징징이게살버거",
-        img: "https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjNfMTM2/MDAxNjAzMzgzNDY2MDgy.4HF-jMTtVukYNeF0mm-Ug7JICBvDH1PENw29jwgP8QAg.b35IOs0dle4Kv4ePoHIplR51m4KOgcyTOIqL8BvVW2Qg.GIF.ckzkslkkk/IMG_4646.GIF?type=w800",
-      },
-    ],
-    디저트: [
-      {
-        name: "초코 케이크",
-        img: "https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjJfMzAw/MDAxNjAzMzc1NTU3NDE0.vNbZ9OXBv7shODMblPo0dP4-TwRMZWALsYMYp5RFG3Eg.a1xn9zzbrRHiNOZqZUe80pl8ymnEaZ6YCchqrVNv9Msg.GIF.mmj5202/1583843419760.gif?type=w800",
-      },
-      {
-        name: "아이스크림",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8EQ-TZB5KRz2fOUDQGTlkkClRoG3xdAUNjg&s",
-      },
-    ],
-    사이드: [
-      {
-        name: "감자튀김",
-        img: "https://i2.ruliweb.com/ori/21/10/26/17cbb6f686c2f0c59.gif",
-      },
-      {
-        name: "어니언링",
-        img: "https://i1.ruliweb.com/ori/24/11/12/1931dd8c42a1f74ea.gif",
-      },
-    ],
-    음료: [
-      {
-        name: "콜라",
-        img: "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfMjQx/MDAxNTgzMjA2MjY3ODY5.bvebndyr0h4w2PrF2-78Q8AVTxyj5xZCgpAGKlPi3FYg.KP2I2PAV45cXmtby1g6z5vtXhqPqAToBhlW7aPfnmLUg.GIF.e7dk4/IMG_8316.GIF?type=w800",
-      },
-      {
-        name: "사이다",
-        img: "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfMjQx/MDAxNTgzMjA2MjY3ODY5.bvebndyr0h4w2PrF2-78Q8AVTxyj5xZCgpAGKlPi3FYg.KP2I2PAV45cXmtby1g6z5vtXhqPqAToBhlW7aPfnmLUg.GIF.e7dk4/IMG_8316.GIF?type=w800",
-      },
-    ],
-  };
-
+// ✅ 자식 컴포넌트: 방문자 버튼
+function KakaoVisitorButton({ count, onIncrease }) {
   return (
-    <div className="app">
-      <header>
-        <div className="header-wrapper">
-          <h1>🍔 Burger Shop 🍔</h1>
-        </div>
-      </header>
-
-      {/* 탭 */}
-      <div className="tabs">
-        {Object.keys(menuData).map((category) => (
-          <button
-            key={category}
-            className={`tab-button ${activeTab === category ? 'active' : ''}`}
-            onClick={() => setActiveTab(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <main>
-        {/* 선택된 카테고리 메뉴 */}
-        <section className="menu">
-          <div className="menu-items">
-            {menuData[activeTab].map((item, idx) => (
-              <div className="menu-item" key={idx}>
-                <img src={item.img} alt={item.name} />
-                <p>{item.name}</p>
-                {/* 자식 컴포넌트로 버튼 분리 */}
-                <AddButton itemName={item.name} onAdd={addToOrder} />
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 주문 목록 */}
-        <section className="order">
-          <h2>Your Order</h2>
-          {order.length === 0 ? (
-            <p>No items yet.</p>
-          ) : (
-            <ul>
-              {order.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          )}
-        </section>
-      </main>
-    </div>
+    // count와 onIncrease(부모의 상태 변경 함수)를 props로 받음
+    <button
+      className="kakao-btn"
+      onClick={onIncrease} // 버튼 클릭 → 부모의 onIncrease 함수 실행
+    >
+      <span className="kakao-icon">💛</span>
+      <span className="visitor-count">{count}</span>
+    </button>
   );
 }
 
-export default App;
+// ✅ 부모 컴포넌트
+export default function App() {
+  // 1️⃣ 상태 정의: count(방문자 수)
+  const [count, setCount] = useState(0);
+
+  // 2️⃣ 상태 변경 함수 정의
+  const handleIncrease = () => {
+    // setCount로 count 상태를 +1 증가
+    setCount(prevCount => prevCount + 1);
+    // 🔹 setCount → 상태 변경 요청 → React가 컴포넌트 다시 렌더링
+  };
+
+  return (
+    <div className="app-container">
+      <h1>카카오톡 방문자 버튼 예제</h1>
+
+      {/* 3️⃣ 자식 컴포넌트에 현재 상태(count)와 상태 변경 함수(onIncrease) 전달 */}
+      {/* 자식이 클릭하면 onIncrease 실행 → setCount 동작 → UI 업데이트 */}
+      <KakaoVisitorButton 
+        count={count} 
+        onIncrease={handleIncrease} 
+      />
+    </div>
+  );
+}
