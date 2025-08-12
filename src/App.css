@@ -216,3 +216,23 @@ button:hover {
     padding: 0.4rem 0.8rem;
   }
 }
+
+/* 기존 button 스타일 유지하고 */
+button {
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, #ff9800, #ff7b00);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(255, 128, 0, 0.3);
+  transition: all 0.25s ease;
+}
+
+/* AddButton 전용 스타일 */
+.add-btn {
+  font-weight: bold;
+}

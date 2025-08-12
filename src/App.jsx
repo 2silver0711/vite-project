@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import AddButton from './AddButton';
 
 function App() {
   const [activeTab, setActiveTab] = useState('버거');
   const [order, setOrder] = useState([]);
 
+  // 부모가 상태를 바꾸는 함수
   const addToOrder = (item) => {
     setOrder([...order, item]);
   };
@@ -83,7 +83,8 @@ function App() {
               <div className="menu-item" key={idx}>
                 <img src={item.img} alt={item.name} />
                 <p>{item.name}</p>
-                <button onClick={() => addToOrder(item.name)}>Add to Order</button>
+                {/* 자식 컴포넌트로 버튼 분리 */}
+                <AddButton itemName={item.name} onAdd={addToOrder} />
               </div>
             ))}
           </div>
