@@ -72,8 +72,8 @@ body, html, #root {
   font-size: 1rem;
   transition: transform 0.2s ease;
   user-select: none;
-  color: #151515;
-  font-weight: 800;
+  color: #ff9c1a;
+  font-weight: 700;
   text-shadow: 0 1px 3px rgba(255,255,255,0.9);
   position: relative;
 }
@@ -111,7 +111,7 @@ body, html, #root {
   margin-top: 20px;
   padding: 12px 24px;
   background: rgba(255, 255, 255, 0.85);
-  color: #4a2e00;
+  color: #2e2e2e;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 16px;
