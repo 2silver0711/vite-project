@@ -1,42 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// ✅ 자식 컴포넌트: 방문자 버튼
 function KakaoVisitorButton({ count, onIncrease }) {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    onIncrease();
+    setClicked(true);
+  };
+
+  useEffect(() => {
+    if (clicked) {
+      const timer = setTimeout(() => setClicked(false), 200);
+      return () => clearTimeout(timer);
+    }
+  }, [clicked]);
+
   return (
-    // count와 onIncrease(부모의 상태 변경 함수)를 props로 받음
     <button
-      className="kakao-btn"
-      onClick={onIncrease} // 버튼 클릭 → 부모의 onIncrease 함수 실행
+      className={`kakao-btn ${clicked ? 'clicked' : ''}`}
+      onClick={handleClick}
+      aria-label="방문자 버튼"
     >
-      <span className="kakao-icon">💛</span>
+      <span className="kakao-icon">🥕</span>
       <span className="visitor-count">{count}</span>
     </button>
   );
 }
 
-// ✅ 부모 컴포넌트
 export default function App() {
-  // 1️⃣ 상태 정의: count(방문자 수)
   const [count, setCount] = useState(0);
+  const [showMessage, setShowMessage] = useState(false);
 
-  // 2️⃣ 상태 변경 함수 정의
   const handleIncrease = () => {
-    // setCount로 count 상태를 +1 증가
-    setCount(prevCount => prevCount + 1);
-    // 🔹 setCount → 상태 변경 요청 → React가 컴포넌트 다시 렌더링
+    setCount(prev => prev + 1);
   };
+
+  // ✅ count 값이 5의 배수일 때 메시지 표시
+  useEffect(() => {
+    if (count > 0 && count % 5 === 0) {
+      setShowMessage(true);
+      // 2.5초 후 메시지 사라짐
+      const timer = setTimeout(() => setShowMessage(false), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [count]);
 
   return (
     <div className="app-container">
-      <h1>카카오톡 방문자 버튼 예제</h1>
+      <div className="profile-header">
+        <div className="profile-info">
+          <img
+            src="https://www.mujerdevision.com/NVision/wp-content/uploads/conejo.jpg"
+            alt="프로필"
+            className="profile-img"
+          />
+          <h2 className="profile-name">토끼 당근먹이기🐰</h2>
+          <p className="profile-status">"아래 버튼을 눌러보세요 ^~^"</p>
+        </div>
+      </div>
 
-      {/* 3️⃣ 자식 컴포넌트에 현재 상태(count)와 상태 변경 함수(onIncrease) 전달 */}
-      {/* 자식이 클릭하면 onIncrease 실행 → setCount 동작 → UI 업데이트 */}
-      <KakaoVisitorButton 
-        count={count} 
-        onIncrease={handleIncrease} 
-      />
+      <KakaoVisitorButton count={count} onIncrease={handleIncrease} />
+
+      {/* 🎉 축하 메시지 */}
+      {showMessage && (
+        <div className="congrats-msg">
+          🎉 축하해요! 토끼가 성장했어요! 🎉
+        </div>
+      )}
     </div>
   );
 }

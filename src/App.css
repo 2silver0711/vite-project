@@ -1,41 +1,128 @@
+/* 데스크톱 화면 꽉 차는 배경 & 레이아웃 */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  background: #f9f9f9;
+}
+
 .app-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('https://i.pinimg.com/originals/22/1a/7d/221a7de4d27df9a868ad015f459e38f5.jpg');
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
-  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  justify-content: center;
+  gap: 40px;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
 
-h1 {
-  margin-bottom: 1.5rem;
+/* 프로필 정보 */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* 동그란 노란 버튼 */
+.profile-info {
+  text-align: center;
+}
+
+.profile-img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #c3abff;
+  box-shadow: 0 0 40px 12px rgba(172, 124, 255, 0.75);
+}
+
+.profile-name {
+  margin: 20px 0 8px 0;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.profile-status {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* 방문자 버튼 */
 .kakao-btn {
-  background-color: #fee500;
+  background-color: #ffe46c;
   border: none;
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  width: 160px;
+  height: 160px;
+  box-shadow: 0 0 40px 10px rgba(255, 211, 110, 0.9);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  user-select: none;
+  color: #151515;
+  font-weight: 800;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+  position: relative;
 }
 
 .kakao-btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  box-shadow: 0 0 60px 16px rgba(254, 232, 0, 1);
+}
+
+.kakao-btn.clicked {
+  animation: bounce 0.3s ease;
+}
+
+/* 애니메이션 */
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
 }
 
 .kakao-icon {
-  font-size: 2rem;
+  font-size: 4rem;
+  user-select: none;
 }
 
 .visitor-count {
+  margin-top: 10px;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+/* 데스크톱 고정 디자인으로, 별도 반응형은 제외 */
+
+/* 축하 메시지 스타일 */
+.congrats-msg {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #4a2e00;
+  font-size: 1rem;
   font-weight: bold;
-  font-size: 1.2rem;
-  margin-top: 5px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeInOut 2.5s ease;
+}
+
+/* 부드러운 등장/퇴장 애니메이션 */
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translateY(10px); }
+  10%  { opacity: 1; transform: translateY(0); }
+  90%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
 }
