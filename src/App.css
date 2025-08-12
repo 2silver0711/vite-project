@@ -1,4 +1,4 @@
-/* 데스크톱 화면 꽉 차는 배경 & 레이아웃 */
+/* 전체 레이아웃 설정 */
 body, html, #root {
   margin: 0;
   padding: 0;
@@ -17,12 +17,12 @@ body, html, #root {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  color: white;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  gap: 36px;
+  color: #fffdf8;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }
 
-/* 프로필 정보 */
+/* 프로필 헤더 */
 .profile-header {
   display: flex;
   flex-direction: column;
@@ -33,96 +33,99 @@ body, html, #root {
   text-align: center;
 }
 
+/* 프로필 이미지 */
 .profile-img {
   width: 280px;
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
-  border: 6px solid #c3abff;
-  box-shadow: 0 0 40px 12px rgba(172, 124, 255, 0.75);
+  border: 6px solid #ffcef1; /* 은은한 핑크톤 */
+  box-shadow: 0 0 28px 10px rgba(255, 182, 222, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 40px 14px rgba(255, 182, 222, 1);
 }
 
+/* 프로필 이름 */
 .profile-name {
-  margin: 20px 0 8px 0;
-  font-size: 2.5rem;
+  margin: 18px 0 8px 0;
+  font-size: 2.4rem;
   font-weight: 900;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
+  color: #ffffff;
 }
 
+/* 상태 메시지 */
 .profile-status {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 500;
   font-style: italic;
-  opacity: 0.85;
+  opacity: 0.9;
+  color: #fef4fa;
 }
 
-/* 방문자 버튼 */
+/* 방문자(당근) 버튼 */
 .kakao-btn {
-  background-color: #ffe46c;
+  background-color: #ffec85;
   border: none;
   border-radius: 50%;
-  width: 160px;
-  height: 160px;
-  box-shadow: 0 0 40px 10px rgba(255, 211, 110, 0.9);
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 0 30px 8px rgba(255, 220, 140, 0.9);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   user-select: none;
-  color: #ff9c1a;
-  font-weight: 700;
-  text-shadow: 0 1px 3px rgba(255,255,255,0.9);
-  position: relative;
+  color: #ff8c42;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.9);
 }
-
 .kakao-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 60px 16px rgba(254, 232, 0, 1);
+  box-shadow: 0 0 50px 12px rgba(255, 232, 150, 1);
 }
-
 .kakao-btn.clicked {
-  animation: bounce 0.3s ease;
+  animation: bounce 0.25s ease;
 }
 
-/* 애니메이션 */
+/* 버튼 클릭 튕김 효과 */
 @keyframes bounce {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.25); }
+  50% { transform: scale(1.22); }
 }
 
+/* 버튼 안의 당근 아이콘 */
 .kakao-icon {
-  font-size: 4rem;
-  user-select: none;
+  font-size: 3.6rem;
 }
-
 .visitor-count {
-  margin-top: 10px;
-  font-size: 2.5rem;
+  margin-top: 8px;
+  font-size: 2.2rem;
   font-weight: 900;
 }
 
-/* 데스크톱 고정 디자인으로, 별도 반응형은 제외 */
-
-/* 축하 메시지 스타일 */
+/* 축하 메시지 */
 .congrats-msg {
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #2e2e2e;
-  font-size: 1rem;
+  margin-top: 10px;
+  padding: 14px 28px;
+  background: rgba(255, 240, 250, 0.9);
+  color: #b34a70;
+  font-size: 1.05rem;
   font-weight: bold;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
   animation: fadeInOut 2.5s ease;
 }
 
-/* 부드러운 등장/퇴장 애니메이션 */
+/* 축하 메시지 나타났다 사라지는 애니메이션 */
 @keyframes fadeInOut {
   0%   { opacity: 0; transform: translateY(10px); }
   10%  { opacity: 1; transform: translateY(0); }
-  90%  { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-10px); }
+  85%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
 }

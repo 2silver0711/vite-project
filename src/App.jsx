@@ -32,15 +32,25 @@ export default function App() {
   const [count, setCount] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
 
+  // 토끼 프로필 사진 리스트
+  const rabbitImages = [
+    "https://e1.pxfuel.com/desktop-wallpaper/239/603/desktop-wallpaper-baby-bunny-5-baby-bunny-kawaii.jpg", // 기본 이미지
+    "https://social-phinf.pstatic.net/20210511_249/1620694686964r10zu_JPEG/image_616659168_(2).jpg",          // 10개 이상일 때
+    "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjRfNTcg/MDAxNjQzMDI3NjI3NDMz.2URcawtm1gBlBOUovmVQECViJIM5mGiPOygzK7CJGvYg.FDKp7TZ61OtVoEYm3R5siLL2unShUIc4AV5wH4FGTBIg.PNG.chomchom64/image.png?type=w800",                            // 20개 이상일 때
+    "https://pbs.twimg.com/media/EgV5hYwUEAAcvLN.jpg",                              // 30개 이상일 때
+    "https://imgnn.seoul.co.kr/img/upload/2020/06/07/SSI_20200607180024.jpg",                              // 40개 이상일 때
+  ];
+
+  // 사진 인덱스 계산 (10개 단위로 순환)
+  const currentImgIndex = Math.floor(count / 10) % rabbitImages.length;
+
   const handleIncrease = () => {
     setCount(prev => prev + 1);
   };
 
-  // ✅ count 값이 5의 배수일 때 메시지 표시
   useEffect(() => {
     if (count > 0 && count % 5 === 0) {
       setShowMessage(true);
-      // 2.5초 후 메시지 사라짐
       const timer = setTimeout(() => setShowMessage(false), 2500);
       return () => clearTimeout(timer);
     }
@@ -50,8 +60,9 @@ export default function App() {
     <div className="app-container">
       <div className="profile-header">
         <div className="profile-info">
+          {/* 프로필 사진이 count 값에 따라 동적으로 변경됨 */}
           <img
-            src="https://www.mujerdevision.com/NVision/wp-content/uploads/conejo.jpg"
+            src={rabbitImages[currentImgIndex]}
             alt="프로필"
             className="profile-img"
           />
@@ -62,7 +73,6 @@ export default function App() {
 
       <KakaoVisitorButton count={count} onIncrease={handleIncrease} />
 
-      {/* 🎉 축하 메시지 */}
       {showMessage && (
         <div className="congrats-msg">
           🎉 축하해요! 토끼가 성장했어요! 🎉
