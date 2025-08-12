@@ -39,6 +39,7 @@ export default function App() {
     "https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjRfNTcg/MDAxNjQzMDI3NjI3NDMz.2URcawtm1gBlBOUovmVQECViJIM5mGiPOygzK7CJGvYg.FDKp7TZ61OtVoEYm3R5siLL2unShUIc4AV5wH4FGTBIg.PNG.chomchom64/image.png?type=w800",                            // 20개 이상일 때
     "https://pbs.twimg.com/media/EgV5hYwUEAAcvLN.jpg",                              // 30개 이상일 때
     "https://imgnn.seoul.co.kr/img/upload/2020/06/07/SSI_20200607180024.jpg",                              // 40개 이상일 때
+    "https://pbs.twimg.com/media/CsVZSOiUEAAnRqM.jpg",                              // 50개 이상일 때
   ];
 
   // 사진 인덱스 계산 (10개 단위로 순환)
