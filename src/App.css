@@ -1,144 +1,235 @@
-/* 전체 페이지 스타일 */
+:root {
+  --primary: #030213;
+  --primary-foreground: #ffffff;
+  --secondary: #d6d6e6;
+  --secondary-foreground: #030213;
+  --card: #1e1e1e;
+  --card-foreground: #ffffff;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --radius: 0.625rem;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+}
+
 body {
   margin: 0;
-  font-family: 'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
-  background: #c0c0c0;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom right, var(--zinc-900), #0f172a, #000);
+  color: white;
 }
 
-.app-container {
-  max-width: 500px;
+.container {
+  max-width: 1280px;
   margin: auto;
-  padding: 30px;
+  padding: 1.5rem;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+/* ===== 헤더 ===== */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
 }
-
-/* 카드형 섹션 */
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+.header-emoji {
+  font-size: 1.8rem;
+  line-height: 1;
 }
-
-/* 카운터 공통 섹션 */
-.counter-section {
+.header-title-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
 }
-
-/* -------------------------- */
-/* 초심플 카운터 메인 버튼   */
-/* -------------------------- */
-.main-btn {
-  background: #ffe46c;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 20px;
+.header-title {
+  margin: 0;
+  font-size: 1.5rem;
   font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  line-height: 1.2;
 }
-.main-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+.header-subtitle {
+  font-size: 0.875rem;
+  color: var(--amber-400);
+  font-weight: 400;
+  margin-top: 0.15rem;
 }
 
-/* -------------------------- */
-/* 멀티 카운터 행 구조       */
-/* -------------------------- */
-.multi-row {
+/* ===== 버튼 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-default {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-default:hover {
+  background: color-mix(in srgb, var(--primary), white 10%);
+}
+.btn-outline {
+  border: 1px solid var(--border);
+  background: var(--zinc-800);
+  color: white;
+}
+.btn-sm {
+  height: 2rem;
+  padding: 0 0.5rem;
+}
+.btn-lg {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+.btn-destructive {
+  background: transparent;
+  color: white;
+  border: 1px solid var(--amber-400);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-destructive:hover {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+/* ===== 카드 ===== */
+.card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  outline: 1px solid rgba(251, 191, 36, 0.6);
+  outline-offset: 2px;
+}
+
+/* 이미지 비율 고정 */
+.card-image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #222;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+}
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+.card:hover .card-image-wrap img {
+  transform: scale(1.08);
+}
+.card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  pointer-events: none;
 }
 
-.counter-label {
+.card-header {
+  padding: 1rem 1.5rem 0;
+}
+.card-title {
+  font-size: 1.125rem;
   font-weight: 600;
-  min-width: 40px;
-  text-align: right;
+}
+.card-content {
+  padding: 0 1.5rem;
+}
+.card-footer {
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-footer.total {
+  margin-top: 1rem;
 }
 
-.counter-value {
-  min-width: 30px;
-  text-align: center;
-  font-weight: 600;
+/* ===== 주문 내역 박스 여백 ===== */
+#order-cart {
+  margin-top: 2rem;
 }
 
-/* -------------------------- */
-/* 박스형 +, - 버튼          */
-/* -------------------------- */
-.box-btn {
-  width: 40px;
-  height: 36px;
-  border-radius: 8px;             /* 살짝 둥근 박스 */
-  border: none;
-  background: #f3f3f3;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.15s;
-  user-select: none;
-  padding: 0;
-  margin: 0 4px;
-  line-height: 36px;              /* 내부 아이콘 수직 중앙정렬 */
-}
-.box-btn:hover {
-  background: #ffe46c;
-  color: #c1730d;
+/* ===== 장바구니 항목 ===== */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
 }
 
-/* -------------------------- */
-/* 카운터 삭제 버튼          */
-/* -------------------------- */
-.delete-btn {
-  background: #ffc1d4;
-  border: none;
-  border-radius: 8px;
-  padding: 5px 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-.delete-btn:hover {
-  background: #ff95bc;
+/* ===== 스크롤 영역 ===== */
+.scroll-area {
+  max-height: 320px;
+  overflow-y: auto;
 }
 
-/* -------------------------- */
-/* 카운터 추가 & 전체 리셋   */
-/* -------------------------- */
-.add-btn,
-.reset-btn {
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
+/* ===== 모달 ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: var(--zinc-900);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--zinc-700);
+  max-width: 400px;
+  width: 100%;
 }
 
-.add-btn {
-  background: #ffe46c;
-}
-.add-btn:hover {
-  background: #fff2a2;
-}
-
-.reset-btn {
-  background: #b3e5fc;
-}
-.reset-btn:hover {
-  background: #81d4fa;
+/* ===== 카테고리 필터 ===== */
+.category-filter {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
 }
 
-/* 합계 표시 */
-.total-label {
-  margin-top: 6px;
-  font-weight: bold;
+/* ===== 위스키 메뉴 ===== */
+.whiskey-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* ===== 포커스 스타일 (노란 라인 제거) ===== */
+button:focus,
+button:focus-visible,
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border-color: inherit;
 }
