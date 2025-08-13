@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import FirstRabbit from './FirstRabbit';
-import SecondRabbit from './SecondRabbit';
-import './App.css';
+import React from "react";
+import SimpleCounter from "./SimpleCounter";
+import MultiCounterList from "./MultiCounterList";
+import "./App.css";
 
 export default function App() {
-  const [showSecondRabbit, setShowSecondRabbit] = useState(false);
-
-  // 첫 번째 토끼 완료 시 호출
-  const handleFirstRabbitComplete = () => {
-    setShowSecondRabbit(true);
-  };
-
   return (
-    <div>
-      {!showSecondRabbit ? (
-        <FirstRabbit onComplete={handleFirstRabbitComplete} />
-      ) : (
-        <SecondRabbit />
-      )}
+    <div className="app-container">
+      <h1>🐰 Counter Playground</h1>
+
+      <div className="card">
+        <h2>🥕 초심플 카운터</h2>
+        <SimpleCounter />
+      </div>
+
+      <div className="card">
+        <h2>🥕 멀티 카운터</h2>
+        <MultiCounterList />
+      </div>
     </div>
   );
 }
