@@ -32,7 +32,7 @@ body {
   padding: 1.5rem;
 }
 
-/* ===== 헤더 ===== */
+/* 헤더 */
 header {
   display: flex;
   flex-wrap: wrap;
@@ -60,7 +60,7 @@ header {
   margin-top: 0.15rem;
 }
 
-/* ===== 버튼 ===== */
+/* 버튼 */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -94,6 +94,7 @@ header {
   padding: 0 1rem;
   font-size: 1rem;
 }
+/* 삭제 버튼 - 부제목 컬러와 동일한 테두리 */
 .btn-destructive {
   background: transparent;
   color: white;
@@ -105,7 +106,7 @@ header {
   color: var(--destructive-foreground);
 }
 
-/* ===== 카드 ===== */
+/* 카드 */
 .card {
   background: var(--card);
   color: var(--card-foreground);
@@ -170,12 +171,12 @@ header {
   margin-top: 1rem;
 }
 
-/* ===== 주문 내역 박스 여백 ===== */
+/* 주문 내역 박스 여백 */
 #order-cart {
   margin-top: 2rem;
 }
 
-/* ===== 장바구니 항목 ===== */
+/* 장바구니 항목 */
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -184,13 +185,13 @@ header {
   padding: 0.5rem 0;
 }
 
-/* ===== 스크롤 영역 ===== */
+/* 스크롤 영역 */
 .scroll-area {
   max-height: 320px;
   overflow-y: auto;
 }
 
-/* ===== 모달 ===== */
+/* 모달 */
 .modal {
   position: fixed;
   inset: 0;
@@ -208,7 +209,7 @@ header {
   width: 100%;
 }
 
-/* ===== 카테고리 필터 ===== */
+/* 카테고리 필터 */
 .category-filter {
   display: flex;
   gap: 0.5rem;
@@ -216,7 +217,7 @@ header {
   padding-bottom: 0.5rem;
 }
 
-/* ===== 위스키 메뉴 ===== */
+/* 위스키 메뉴 */
 .whiskey-menu {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -224,7 +225,7 @@ header {
   margin-top: 1rem;
 }
 
-/* ===== 포커스 스타일 (노란 라인 제거) ===== */
+/* 포커스 스타일 제거 노란 라인 */
 button:focus,
 button:focus-visible,
 .btn:focus,
